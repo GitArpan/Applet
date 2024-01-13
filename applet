@@ -1,0 +1,36 @@
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ButtonApplet extends Applet implements ActionListener {
+    private String message = "Click a button";
+    private Button button1, button2;
+
+    public void init() {
+        button1 = new Button("Button 1");
+        button2 = new Button("Button 2");
+
+        // Add action listeners to the buttons
+        button1.addActionListener(this);
+        button2.addActionListener(this);
+
+        // Add buttons to the applet
+        add(button1);
+        add(button2);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button1) {
+            message = "Button 1 clicked";
+        } else if (e.getSource() == button2) {
+            message = "Button 2 clicked";
+        }
+        repaint();  // Request a redraw to update the displayed message
+    }
+
+    public void paint(Graphics g) {
+        g.drawString(message, 20, 50);
+    }
+}
